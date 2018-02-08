@@ -112,7 +112,9 @@ data = json.loads(r.text)
 
 fortnite_data = FortniteDataExtracter(data)
 
-print(fortnite_data.get_squad_values())
+solo_values = fortnite_data.get_solo_values()
+duo_values = fortnite_data.get_duo_values()
+squad_values = fortnite_data.get_squad_values()
 
 opts = dict(plot_width=720, plot_height=int(720/2), min_border=0)
 
@@ -129,24 +131,24 @@ p.title.text_font_size = "25px"
 
 #solo
 solo = p.vbar(x=[5], width=0.1, bottom=0,
-       top=[fortnite_data.get_solo_values()["score"]], color="red")
+       top=[solo_values["score"]], color="red")
 
 #duo
 
 duo = p.vbar(x=[15], width=0.1, bottom=0,
-       top=[fortnite_data.get_duo_values()["score"]], color="blue")
+       top=[duo_values["score"]], color="blue")
 
 #squad
 
 squad = p.vbar(x=[25], width=0.1, bottom=0,
-       top=[fortnite_data.get_squad_values()["score"]], color="green")
+       top=[squad_values["score"]], color="green")
 
 #legend
 
 legend = Legend(items=[
-    ("Solo - %s" %(fortnite_data.get_solo_values()["score"]) ,   [solo]),
-    ("Duo - %s" %(fortnite_data.get_duo_values()["score"]) , [duo]),
-    ("Squad - %s" %(fortnite_data.get_squad_values()["score"]) , [squad])
+    ("Solo - %s" %(solo_values["score"]) ,   [solo]),
+    ("Duo - %s" %(duo_values["score"]) , [duo]),
+    ("Squad - %s" %(squad_values["score"]) , [squad])
 ], location=(10, 0))
 
 p.add_layout(legend, 'right')
