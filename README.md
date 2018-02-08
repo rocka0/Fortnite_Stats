@@ -3,7 +3,7 @@ A python app which generates graphs for your fortnite battle royale performance
 
 ## Getting Started
 
-Get an API key from https://fortnitetracker.com and put in the `api_key.py` file and that's it!
+Get an API key from https://fortnitetracker.com and put it in the `api_key.py` file and that's it!
 
 ## Running the app
 
