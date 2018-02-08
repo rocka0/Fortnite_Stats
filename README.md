@@ -9,7 +9,7 @@ Get an API key from https://fortnitetracker.com and put it in the `api_key.py` f
 
 `cd` in to the app directory and run `python app.py`
 
-This should run the app and after you answer the questions, it should display the graphs.
+This should run the app and after you answer the questions like username and platform, it should display the graphs.
 
 ## Features
 
