@@ -116,43 +116,68 @@ solo_values = fortnite_data.get_solo_values()
 duo_values = fortnite_data.get_duo_values()
 squad_values = fortnite_data.get_squad_values()
 
-opts = dict(plot_width=720, plot_height=int(720/2), min_border=0)
+opts = dict(plot_width=680, plot_height=int(680/2), min_border=0)
 
 output_file("graph.html")
 
+# This is the score graph
 p = figure(**opts)
-
 #options
-
-p.title.text = "Fortnite Data Graph - User: %s" %(epic_nickname)
+p.title.text = "Fortnite Score Graph - User: %s" %(epic_nickname)
 p.title.align = "center"
 p.title.text_color = "orange"
 p.title.text_font_size = "25px"
-
 #solo
+# command : "{:,}".format(int(solo_values["score"]))
 solo = p.vbar(x=[5], width=0.1, bottom=0,
        top=[solo_values["score"]], color="red")
-
 #duo
-
 duo = p.vbar(x=[15], width=0.1, bottom=0,
        top=[duo_values["score"]], color="blue")
-
 #squad
-
 squad = p.vbar(x=[25], width=0.1, bottom=0,
        top=[squad_values["score"]], color="green")
-
 #legend
-
 legend = Legend(items=[
-    ("Solo - %s" %(solo_values["score"]) ,   [solo]),
-    ("Duo - %s" %(duo_values["score"]) , [duo]),
-    ("Squad - %s" %(squad_values["score"]) , [squad])
+    ("Solo - %s" %("{:,}".format(int(solo_values["score"]))) ,   [solo]),
+    ("Duo - %s" %("{:,}".format(int(duo_values["score"]))) , [duo]),
+    ("Squad - %s" %("{:,}".format(int(squad_values["score"]))) , [squad])
 ], location=(10, 0))
-
 p.add_layout(legend, 'right')
 
-show(p)
+# end score graph
 
-# show(gridplot([[p, p]]))
+#This is the kdr graph
+p1 = figure(**opts)
+#options
+p1.title.text = "Fortnite KDR Graph - User: %s" %(epic_nickname)
+p1.title.align = "center"
+p1.title.text_color = "orange"
+p1.title.text_font_size = "25px"
+#graph
+
+#solo
+solo1 = p1.vbar(x=[5], width=0.1, bottom=0,
+       top=[solo_values["kdr"]], color="red")
+#duo
+duo1 = p1.vbar(x=[15], width=0.1, bottom=0,
+       top=[duo_values["kdr"]], color="blue")
+#squad
+squad1 = p1.vbar(x=[25], width=0.1, bottom=0,
+       top=[squad_values["kdr"]], color="green")
+
+#legend
+legend1 = Legend(items=[
+    ("Solo - %s" %(solo_values["kdr"]) ,   [solo1]),
+    ("Duo - %s" %(duo_values["kdr"]) , [duo1]),
+    ("Squad - %s" %(squad_values["kdr"]) , [squad1])
+], location=(10, 0))
+
+p1.add_layout(legend1, "right")
+
+#end kdr graph
+
+#Grid Plot of all graphs
+grid = gridplot([[p, p1], [None, None]])
+
+show(grid)
