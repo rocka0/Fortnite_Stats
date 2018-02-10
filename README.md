@@ -14,9 +14,9 @@ This should run the app and after you answer the questions like username and pla
 ## Features
 
 1) Gives a graph of your Solo, Duo and Squad scores
+2) Kill Die Ratio for all three modes
 
 ## Coming Features
 
-2) Kill Die Ratio for all three modes
 3) TRN Rating for all three modes
 4) Other stats
