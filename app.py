@@ -1,4 +1,6 @@
-import requests,json
+print("Starting App.....")
+
+import requests,json,sys
 
 from bokeh.io import push_notebook, show, output_notebook
 from bokeh.layouts import row, gridplot
@@ -9,6 +11,7 @@ from api_key import API_KEY
 
 from bokeh.models import Legend
 
+print("Modules loaded.....")
 
 header = {"TRN-Api-Key": API_KEY}
 
@@ -112,9 +115,13 @@ data = json.loads(r.text)
 
 fortnite_data = FortniteDataExtracter(data)
 
-solo_values = fortnite_data.get_solo_values()
-duo_values = fortnite_data.get_duo_values()
-squad_values = fortnite_data.get_squad_values()
+try:
+    solo_values = fortnite_data.get_solo_values()
+    duo_values = fortnite_data.get_duo_values()
+    squad_values = fortnite_data.get_squad_values()
+except KeyError:
+    print("Could not find data.....")
+    sys.exit(1)
 
 opts = dict(plot_width=680, plot_height=int(680/2), min_border=0)
 
